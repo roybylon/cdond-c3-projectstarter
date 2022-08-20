@@ -8,7 +8,7 @@ commands:
     parameters:
       workflow_id:
         type: string
-        # default: ${CIRCLE_WORKFLOW_ID}
+        #default: ${CIRCLE_WORKFLOW_ID}
     steps:
       - run:
           name: Destroy environments
@@ -23,6 +23,8 @@ commands:
   revert-migrations:
     description: Revert the last migration if successfully run in the current workflow.
     parameters:
+      workflow_id:
+        type: string
       # Add parameter here     
     steps:
       - run:
@@ -230,6 +232,7 @@ jobs:
             fi
       - destroy-environment:
           workflow_id: ${CIRCLE_WORKFLOW_ID:0:7}
+  
   deploy-frontend:
     docker:
       - image: python:3.7-alpine3.16
