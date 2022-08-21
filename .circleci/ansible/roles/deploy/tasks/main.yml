@@ -38,5 +38,5 @@
 - name: start app
   become: true
   shell: |
-    pm2 stop all
-    pm2 start npm -- start
+    #pm2 stop all
+    sudo pm2 start npm -- start
