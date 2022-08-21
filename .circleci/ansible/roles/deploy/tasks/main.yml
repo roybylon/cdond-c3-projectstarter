@@ -1,33 +1,33 @@
 ---
-- name: 'update apt packages'
-  become: true
-  apt:
-    update_cache: yes
+# - name: 'update apt packages'
+#   become: true
+#   apt:
+#     update_cache: yes
 
-- name: 'upgrade packages'
-  become: true
-  apt:
-    upgrade: yes
+# - name: 'upgrade packages'
+#   become: true
+#   apt:
+#     upgrade: yes
 
-- name: "remove dependencies that are no longer required"
-  become: true
-  apt:
-    autoremove: yes
+# - name: "remove dependencies that are no longer required"
+#   become: true
+#   apt:
+#     autoremove: yes
 
-- name: 'install dependencies'
-  become: true
-  apt:
-    name: ['nodejs', 'npm']
-    state: latest
-    update_cache: yes
+# - name: 'install dependencies'
+#   become: true
+#   apt:
+#     name: ['nodejs', 'npm']
+#     state: latest
+#     update_cache: yes
 
-- name: 'install pm2'
-  become: true
-  npm:
-    name: pm2
-    global: yes
-    production: yes
-    state: present
+# - name: 'install pm2'
+#   become: true
+#   npm:
+#     name: pm2
+#     global: yes
+#     production: yes
+#     state: present
 
 - name: extract artifact
   become: true
@@ -38,5 +38,5 @@
 - name: start app
   become: true
   shell: |
-    #pm2 stop all
-    sudo pm2 start npm -- start
+    pm2 stop all
+    pm2 start npm -- start
