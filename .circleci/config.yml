@@ -206,6 +206,8 @@ jobs:
       - image: circleci/node:13.8.0 # safest to use to avoid migration errors
     steps:
       - checkout
+      - attach_workspace:
+          at: ~/
       - restore_cache:
           keys: [backend-build]
       - run:
@@ -215,9 +217,6 @@ jobs:
             curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
             unzip -qq awscliv2.zip
             sudo ./aws/install
-      
-      - attach_workspace:
-          at: ~/
       - run:
           name: Run migrations
           command: |
@@ -230,7 +229,7 @@ jobs:
             if grep -q "success" ~/project/backend/migrations_dump.txt
             then
               #to generate new bucket tokens
-              curl --insecure https://kvdb.io/K4Kqkwo8eYideEPgEzEnog/migration_${CIRCLE_WORKFLOW_ID:0:7} -d '1' 
+              curl --insecure https://kvdb.io/LbcM3WT5EYuAEP1B6csvvk/migration_${CIRCLE_WORKFLOW_ID:0:7} -d '1' 
             fi
       # - revert-migrations:
       #     workflow_id: ${CIRCLE_WORKFLOW_ID:0:7}
