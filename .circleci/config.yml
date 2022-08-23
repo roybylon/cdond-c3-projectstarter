@@ -468,7 +468,7 @@ jobs:
 #             # your code here
 #       - run:
 #           name: Update cloudfront distribution
-#           command: |
+#           command: | 
 #             # your code here
 #       # Here's where you will add some code to rollback on failure  
 
